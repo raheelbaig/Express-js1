@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>FORM</title>
+</head>
+<style>
+    body{
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+</style>
+<body>
+    <h1>Server Form</h1>
+    
+        NAME : <input type="text" id="name" placeholder="Enter Name"><br><br>
+        EMAIL : <input type="email" id="email" placeholder="Enter Email"><br><br>
+        PASSWORD : <input type="password" id="pass" placeholder="password">
+        <button onclick="data()">post data</button>
+        <button onclick="get()">get data</button>
+        <h1 id="result"></h1>
+   
+    </body>
+    <script >
+    
+        
+        
+        function data() {
+            let Name = document.getElementById("name").value
+            let email = document.getElementById("email").value
+            let pass = document.getElementById("pass").value
+            axios.post('https://usercreatedserver.herokuapp.com/users', {
+                name: Name,
+                email: email,
+                pass:pass
+              })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+              
+            }
+            function get(){
+                axios.get('https://usercreatedserver.herokuapp.com/users')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  
+}
+    
+            </script>
+    
+</html>
